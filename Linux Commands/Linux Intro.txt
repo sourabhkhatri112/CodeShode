@@ -1,0 +1,53 @@
+############################################# VAGRANT COMMANDS #################################################################
+vagrant global-status    # To check where the vagrant is installed inside the system
+cd C:/vagrant-vms/centos  # To start the vagrant you have to migrate inside the repository where vagrantfile exists
+vagrant up                # To start the vargant machine
+vagrant ssh                # To login inside vagrant
+[vagrant@localhost ~]$  # '~' here means we are in the home directory of vagrant user ie, "/home/vagrant"
+[root@localhost /]#  '~' here means this is root user home directory ie "/root"
+
+################################################################################################################################
+
+whoami ->       # Who's logged in    ||  pwd ->            # Present working directory  ||  history ->        # Commands you ran in the past
+mkdir -p /opt/dev/ops/devops/test         # -p here forcefully will create directories with directory 
+
+################################################# FILE OPEN & LISTING ####################################################################
+ls | ls -lt | ls -ltr              # Files present in the present working directory | Latest file at the top | Latest file at the bottom
+cat /etc/os-release  #  Cat command to open a specific file
+less <file-name> # Command same as cat used to read a specific file but in a reader plus you can also make search inside
+
+[root@localhost ~]# ln -s /opt/dev/ops/devops/test/commands.txt cmds          # ln -s   will create softlink of "/opt/dev/ops/devops/test/commands.txt" within "cmds"
+######################### NOTE #################################
+Know the difference below
+/ -- Root directory
+/root -- Root user HOME Directory
+/home/vagrant -- Non root named "Vagrant" HOME Directory
+###############################################################
+lrwxrwxrwx -- "l" here means its a link
+brw-rw----  -- "b" here means its a block file
+crw-rw---- -- "c" here means its a character file
+###############################################################
+"home" -> It is users Home directory   
+"root" -> It is root users's Home directory
+"boot" -> it contains bootloader & kernel
+"media" & "/mnt" -> Contains external media info
+"usr/bin" -> Contains user executables & system executables 
+"etc" -> It contain multiple configuration files
+################################################################
+####################### GREP COMMANDS BELOW ################################
+grep <word-name> <file-name> --> Search is case sensitive
+grep -i <word-name> <file-name> --> Search is NOT case sensitive
+grep -i <word-name> * --> Search will be done in whole directory but not if there is a SUBDIRECTORY in there
+grep -iR <word-name> * --> Search will be done in whole directory and ALSO IN SUBDIRECTORY
+grep -vi <word-name> <file-name> --> DONT SEARCH anything that contains the word mentioned
+
+######################## HEAD & TAILS ######################################
+head -<no of lines> <filename> -> Shows no of lines from top
+tail -<no of lines> <filename> -> Shows no of lines from bottom
+tail -f <filename> -> Shows only the lines that have changed inside.
+
+########################### SEPERATORS #####################################
+cut -d: -f4 /etc/passwd      # "-d" is delimiter here telling the use : as seperator & "f4" telling to pick column no 4
+## "cut" can only be used where files are properly segregated. Otherwise use "awk" commands for complex seperations
+y
+sed -i 's/Coronavirus/covid19/g' samplefile.txt    # For search & replace --> Change coronavirus to covid19 & "g" means in the whole file globally followed by file name & "s" means searching
