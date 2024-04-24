@@ -192,10 +192,8 @@ class LinkedList:
             self.length -= 1
 
     def reverse_list(self):
-        if self.length == 0:
-            return False
-        elif self.length == 1:
-            return True
+        if self.length == 0 or self.length == 1:
+            return "Cannot reverse. Not enough elements"
         else:
             prev_node = None
             current_node = self.head
@@ -204,8 +202,7 @@ class LinkedList:
                 current_node.next = prev_node
                 prev_node = current_node
                 current_node = next_node
-            self.head = self.tail
-            self.tail = self.head
+            self.head = prev_node
 
     def __str__(self):
         temp_node = self.head
