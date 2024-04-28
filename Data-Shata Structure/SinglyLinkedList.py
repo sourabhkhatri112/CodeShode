@@ -191,6 +191,26 @@ class LinkedList:
             popped_node.next = None
             self.length -= 1
 
+    def insert_first(self,data):
+        new_node = Node(data)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+        self.length += 1
+
+    def insert_last(self,data):
+        new_node = Node(data)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = self.tail.next
+        self.length += 1
+        
     def reverse_list(self):
         if self.length == 0 or self.length == 1:
             return "Cannot reverse. Not enough elements"
@@ -204,6 +224,24 @@ class LinkedList:
                 current_node = next_node
             self.head = prev_node
 
+    def remove_Duplicates(self):
+        if self.length == 0:
+            return "list is empty"
+        elif self.length == 1:
+            return "List has only 1 elements"
+        else:
+            no_duplicate_list = set()
+            temp_node = self.head
+            no_duplicate_list.add(temp_node.data)
+            while temp_node.next is not None:
+                if temp_node.next.data in no_duplicate_list:   # duplicate element found
+                    temp_node.next = temp_node.next.next
+                    self.length -= 1
+                else:   # No duplicate found
+                    no_duplicate_list.add(temp_node.next.data)
+                    temp_node = temp_node.next
+            return no_duplicate_list
+    
     def __str__(self):
         temp_node = self.head
         result = ''
