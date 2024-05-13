@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
+import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author SOURABH KHATRI
@@ -238,12 +238,47 @@ public class Streams {
 	}
 	
 	
+	void GroupingBy() {
+		/* LIST : "apple", "banana", "apricot", "orange", "apple pie"
+		 * Collectors.groupingBy(i -> i.length()) -- Grouping words based on length
+		 * 
+		 * Output : {5=[apple], 6=[banana, orange], 7=[apricot], 9=[apple_pie]}
+		 * */
+		fruits.stream().collect(Collectors.groupingBy(i -> i.length()))
+			.forEach((length, wordList) 
+				-> System.out.println("Words with length " + length + ": " + wordList));
+		
+		
+		/* LIST : "apple", "banana", "apricot", "orange", "apple pie"
+		 * Collectors.groupingBy(i -> i.charAt(0)) -- Grouping based on first character
+		 * 
+		 * Output : {a=[apple, apricot, apple_pie], b=[banana], o=[orange]}
+		 * */
+		System.out.println(fruits.stream().collect(Collectors.groupingBy(i -> i.charAt(0))));
+		
+		/* 
+		 * chars().mapToObj(i -> (char)i) -- This is mandatory is operation is to be
+		 * performed over a String instead of list
+		 * 
+		 * Collectors.groupingBy(Function.identity(), Collectors.counting())
+		 * 		-- Finds out occurence of each alphabet
+		 * 
+		 * Output : {r=1, d=1, e=1, W=1, H=1, l=3, o=2}
+		 * */
+		String str = "HelloWorld";
+		System.out.println(str.chars().mapToObj(i -> (char)i)
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())));
+
+		/*
+		 * Output : HELLOWORLD
+		 * */
+		str.chars().mapToObj(ch -> (char) ch).map(ch -> Character.toUpperCase(ch))
+		.forEach(i -> System.out.print(i));
+	}
+	
 	public static void main(String[] args) {
 		//new Streams().ComparatorOperations();
-		new Employee().EmployeeOperations();
-		/*String s = "HelloWorld";
-		Map<Character, Long> map = s.chars().mapToObj(i -> (char)i)
-			.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-		map.forEach((letter,count) -> System.out.println("Letter : " + letter + " and Count : " + count));*/
+		new Streams().GroupingBy();
+		//new Employee().EmployeeOperations();
 	}
 }
