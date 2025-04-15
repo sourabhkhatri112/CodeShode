@@ -1,17 +1,18 @@
-package LinkedListOperationsInsertion;
+package LinkedListNodeCreation.SortingOperation;
 
-/* This is how we are gonna create a node */
+
 class Node{
-    int data;       // Each Coach contains a NUMBER i.e DATA
-    Node next;      // Each Coach contains a HOOK i.e NEXT
+    int data;   // A node contains data
+    Node next;  // A node contains address to the next node
 
+    // Next in order to create any node we are supposed to create a constructor
+    // Hence our node is finally created.
     public Node(int data){
         this.data = data;
         this.next = null;
     }
 }
-
-class LinkedList{
+public class Main {
     private Node head;
 
     public void insert(int data){
@@ -44,44 +45,5 @@ class LinkedList{
             System.out.print(temp.data + "-->");
             temp = temp.next;
         }
-    }
-}
-
-
-
-/*class LinkedList1{
-
-    public void deleteFromIndex(int index){
-        if(head == null){
-            System.out.println("List is null");
-            return;
-        } else if(index == 0){  // If you have asked to simply delete the index at 0
-            head = head.next;   // then cool with O(1) complexity its deleted right away
-            return;
-        }
-        Node temp = head;
-        for(int i=0;i<index-1 && temp!=null ;i++){     // Until you reach the index simply keep going
-            temp = temp.next;                           // however, if you have entered the wrong index temp is found null
-        }                                               // then the loop will break the below condition will handle then.
-        if(temp == null){
-            System.out.println("Invalid index");
-            return;
-        }
-        temp.next = temp.next.next;
-    }
-}*/
-
-public class Main {
-    public static void main(String[] args){
-        LinkedList linkedList = new LinkedList();
-        linkedList.insert(10);
-        linkedList.insert(20);
-        linkedList.insert(30);
-        linkedList.insert(40);
-        linkedList.insert(50);
-        linkedList.insert(60);
-
-
-        linkedList.display();
     }
 }

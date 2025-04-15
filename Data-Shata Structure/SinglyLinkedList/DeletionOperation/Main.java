@@ -1,4 +1,4 @@
-package LinkedListOperationsDeletion;
+package LinkedListNodeCreation.DeletionOperation;
 
 /* This is how we are gonna create a node */
 class Node{
